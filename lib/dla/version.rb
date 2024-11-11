@@ -1,5 +1,5 @@
 # frozen_string_literal: true
 
-module Dla
+module DLA
   VERSION = "0.1.0"
 end

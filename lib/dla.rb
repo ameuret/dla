@@ -2,7 +2,15 @@
 
 require_relative "dla/version"
 
-module Dla
+module DLA
   class Error < StandardError; end
-  # Your code goes here...
+  class Node
+    attr_accessor :maxX
+    attr_accessor :maxY
+
+    def initialize(maxX = 1280, maxY = 720)
+      @maxX = maxX
+      @maxY = maxY
+    end
+  end
 end
