@@ -1,7 +1,10 @@
 # frozen_string_literal: true
 
-require "dla"
+require 'simplecov'
+SimpleCov.start
+require 'dla'
 
+# Previous content of test helper now starts here
 RSpec.configure do |config|
   # Enable flags like --only-failures and --next-failure
   config.example_status_persistence_file_path = ".rspec_status"

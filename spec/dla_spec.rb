@@ -92,10 +92,77 @@ RSpec.describe DLA::Node do
              n.y == prevY - 1).to be true
     end
 
+    it 'lets you specify the direction (:north, :south, :east, :west)' do
+      n = DLA::Node.new root: @root
+      n.x = 42
+      n.y = 42
+      n.move :north
+      expect(n.y).to eq 43
+      n.move :south
+      expect(n.y).to eq 42
+      n.move :east
+      expect(n.x).to eq 43
+      n.move :west
+      expect(n.x).to eq 42
+      expect{n.move :hyperspace}.to raise_exception ArgumentError
+    end
+
+    it 'attaches to a node if destination is occupied' do
+      # n1 = DLA::Node.new root: @root
+      # n1.x = 42
+      # n1.y = 42
+      # n2 = DLA::Node.new root: @root
+      # n2.x = 43
+      # n2.y = 43
+      # n3 = DLA::Node.new root: @root
+      # n3.x = 44
+      # n3.y = 42
+      # n4 = DLA::Node.new root: @root
+      # n4.x = 43
+      # n4.y = 41
+      n = DLA::Node.new root: @root
+      @root.x = 42
+      @root.y = 42
+      n.x = 42
+      n.y = 41
+      n.move :north
+      expect(n.parent).not_to be_nil
+    end
+
     it 'raises an exception if asked to moved when already attached' do
       n = DLA::Node.new root: @root
       @root.attach n, :south
       expect {n.move}.to raise_exception RuntimeError
+    end
+  end
+
+  describe '#north, #south, #east, #west' do
+    it 'returns the child attached on the given direction' do
+      @root.x = 42
+      @root.y = 42
+      n = DLA::Node.new root: @root
+      n.x = 42
+      n.y = 41
+      n.move :north
+      expect(@root.south).to eq n
+
+      n = DLA::Node.new root: @root
+      n.x = 42
+      n.y = 43
+      n.move :south
+      expect(@root.north).to eq n
+
+      n = DLA::Node.new root: @root
+      n.x = 41
+      n.y = 42
+      n.move :east
+      expect(@root.west).to eq n
+
+      n = DLA::Node.new root: @root
+      n.x = 43
+      n.y = 42
+      n.move :west
+      expect(@root.east).to eq n
     end
   end
 

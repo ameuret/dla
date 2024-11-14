@@ -31,6 +31,10 @@ module DLA
       allTreeNodes.find { |n| n.x == x && n.y == y }
     end
 
+    def free?(x, y)
+      !allTreeNodes.any? { |n| n.x == x && n.y == y }
+    end
+
     def north
       @children[:north]
     end
@@ -80,10 +84,11 @@ module DLA
       }[dir]
     end
 
-    def move
+    def move(direction = nil)
       raise RuntimeError if @parent
+      raise ArgumentError unless (direction.nil? || [:north, :south, :east, :west].include?(direction))
 
-      dir = [:north, :south, :east, :west].sample
+      dir = direction || [:north, :south, :east, :west].sample
       destV = {
         north: [0, 1],
         south: [0, -1],
