@@ -1,9 +1,25 @@
 # DLA
 
-TODO: Delete this and the text below, and describe your gem
+A Ruby library implementing Diffusion-Limited Aggregation.
 
-Welcome to your new gem! In this directory, you'll find the files you need to be able to package up your Ruby library into a gem. Put your Ruby code in the file `lib/dla`. To experiment with that code, run `bin/console` for an interactive prompt.
+## Features
+ - Produces simple text file fully describing final render
+ - Keeps full tree, not just cell positions
+ - Keeps building history
 
+## Planned features
+ - [X] Demo app
+ - [ ] Move "Save .dla" to library
+ - [ ] Display saved .dla file
+ - [ ] Upscale
+ - [ ] Binary .dla format
+ - [ ] Load state from .dla file
+ - [ ] Height map
+ - [ ] Export bitmap
+ - [ ] Make history optional
+ - [ ] Multithreading
+ - [ ] Make Demo app human-friendly
+ 
 ## Installation
 
 TODO: Replace `UPDATE_WITH_YOUR_GEM_NAME_IMMEDIATELY_AFTER_RELEASE_TO_RUBYGEMS_ORG` with your gem name right after releasing it to RubyGems.org. Please do not do it earlier due to security reasons. Alternatively, replace this section with instructions to install your gem from git if you don't plan to release to RubyGems.org.
@@ -18,7 +34,31 @@ If bundler is not being used to manage dependencies, install the gem by executin
 
 ## Usage
 
-TODO: Write usage instructions here
+Default arguments are fine (1280x720 bounds)
+
+Let it run for a while:
+``` ruby
+require 'dla'
+root = DLA::Node.root
+n = DLA::Node.new root:
+loop do
+  n.move
+  if n.parent # Node has found another node
+    n = DLA::Node.new root:
+  end
+  break if bored
+end
+
+```
+Inspect state:
+``` ruby
+root.nodes.each{|n| puts n}
+```
+## Demo app
+
+A quick and dirty demo app is in `./bin/dla.rb`.
+
+Because Rubygems are not supposed to be used to distribute apps, you'll need to run the app from the project directory after running `bundle install` in order to satisfy the requirement of my fork of `TTY:Box`.
 
 ## Development
 
@@ -36,4 +76,4 @@ The gem is available as open source under the terms of the [Unlicense](https://u
 
 ## Code of Conduct
 
-Everyone interacting in the Dla project's codebases, issue trackers, chat rooms and mailing lists is expected to follow the [code of conduct](https://github.com/ameuret/dla/blob/main/CODE_OF_CONDUCT.md).
+Everyone interacting in the DLA project's codebases, issue trackers, chat rooms and mailing lists is expected to follow the [code of conduct](https://github.com/ameuret/dla/blob/main/CODE_OF_CONDUCT.md).
