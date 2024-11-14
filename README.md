@@ -19,6 +19,7 @@ A Ruby library implementing Diffusion-Limited Aggregation.
  - [ ] Make history optional
  - [ ] Multithreading
  - [ ] Make Demo app human-friendly
+ - [ ] Make direction vectors configurable
  
 ## Installation
 
@@ -54,6 +55,10 @@ Inspect state:
 ``` ruby
 root.nodes.each{|n| puts n}
 ```
+
+The history string is made of the letters n, s, e, w to describe the directions followed during the calls to `#move`.
+NOTE: The Y axis is oriented to the North.
+
 ## Demo app
 
 A quick and dirty demo app is in `./bin/dla.rb`.
