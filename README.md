@@ -2,10 +2,13 @@
 
 A Ruby library implementing Diffusion-Limited Aggregation.
 
+It randomly builds particle trees by reverse erosion. Can be used to
+generate believable landscapes.
+
 ## Features
  - Produces simple text file fully describing final render
  - Keeps full tree, not just cell positions
- - Keeps building history
+ - Keeps path history (how each node found its way to tree)
 
 ## Planned features
  - [X] Demo app
@@ -17,8 +20,8 @@ A Ruby library implementing Diffusion-Limited Aggregation.
  - [ ] Height map
  - [ ] Export bitmap
  - [ ] Make history optional
- - [ ] Multithreading
- - [ ] Make Demo app human-friendly
+ - [ ] Multithreading (Ractors ?)
+ - [ ] Make Demo app human-friendly (DragonRuby ?)
  - [ ] Make direction vectors configurable
  
 ## Installation
