@@ -23,6 +23,8 @@ generate believable landscapes.
  - [ ] Multithreading (Ractors ?)
  - [ ] Make Demo app human-friendly (DragonRuby ?)
  - [ ] Make direction vectors configurable
+ - [ ] Multiple roots
+ - [ ] Preset seeds (a map of preexisting root nodes is supplied at initialization)
  
 ## Installation
 
